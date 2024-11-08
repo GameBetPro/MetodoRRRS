@@ -1,0 +1,500 @@
+<html>
+
+<head>
+  <base href="." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Métodos RRR</title>
+  <style>
+    :root {
+      --primary: #00bf8f;
+      --secondary: #1a1a1a;
+      --dark: #121212;
+      --light: #f0f0f0;
+      --accent: #00ffcc;
+      --gradient: linear-gradient(135deg, #00bf8f 0%, #00ffcc 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--light);
+      background: var(--dark);
+    }
+
+    .header {
+      background: var(--gradient);
+      color: white;
+      padding: 8rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: gradientFlow 10s ease infinite;
+      box-shadow: 0 10px 30px rgba(0, 191, 143, 0.3);
+    }
+
+    @keyframes gradientFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .header h1 {
+      font-size: 4.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+      animation: titleFloat 3s ease-in-out infinite;
+      letter-spacing: 2px;
+    }
+
+    @keyframes titleFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .header p {
+      font-size: 1.6rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      line-height: 1.8;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin: 4rem 0;
+    }
+
+    .feature-card {
+      background: linear-gradient(145deg, #1e1e1e, #242424);
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 191, 143, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 191, 143, 0.2);
+    }
+
+    .feature-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .feature-card ul li {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--light);
+    }
+
+    .feature-card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+
+    .comparison {
+      margin: 6rem 0;
+    }
+
+    .comparison h2 {
+      color: var(--light);
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+    }
+
+    .comparison table {
+      background: linear-gradient(145deg, #1e1e1e, #242424);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .comparison th {
+      background: var(--gradient);
+      padding: 1.5rem;
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    .comparison td {
+      padding: 1.5rem;
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .comparison tr:hover td {
+      background: rgba(0, 191, 143, 0.1);
+    }
+
+    .faq {
+      margin: 6rem 0;
+    }
+
+    .faq h2 {
+      color: var(--light);
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .faq-question {
+      background: linear-gradient(145deg, #1e1e1e, #242424);
+      color: var(--light);
+      font-size: 1.2rem;
+      padding: 1.5rem 2rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(0, 191, 143, 0.1);
+    }
+
+    .faq-question:hover {
+      border-color: var(--primary);
+      box-shadow: 0 5px 15px rgba(0, 191, 143, 0.2);
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-question.active::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      background: #1a1a1a;
+      padding: 1.5rem 2rem;
+      margin-top: 0.5rem;
+      border-radius: 10px;
+      display: none;
+      color: var(--light);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta {
+      text-align: center;
+      margin: 6rem 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1.5rem 4rem;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.5s ease;
+      box-shadow: 0 10px 20px rgba(0, 191, 143, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 191, 143, 0.4);
+    }
+
+    .price-section {
+      text-align: center;
+      margin: 4rem 0;
+      padding: 2rem;
+      background: linear-gradient(145deg, #1e1e1e, #242424);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--primary);
+      box-shadow: 0 15px 40px rgba(0, 191, 143, 0.2);
+    }
+
+    .price-tag {
+      display: inline-block;
+      position: relative;
+      margin: 2rem 0;
+    }
+
+    .original-price {
+      font-size: 2rem;
+      color: #666;
+      text-decoration: line-through;
+      position: relative;
+      display: inline-block;
+      margin-right: 1rem;
+    }
+
+    .current-price {
+      font-size: 4rem;
+      color: var(--accent);
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+    }
+
+    .price-detail {
+      font-size: 1.2rem;
+      color: #fff;
+      margin: 1rem 0;
+    }
+
+    .black-friday-badge {
+      background: var(--gradient);
+      color: white;
+      padding: 0.5rem 2rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      transform: rotate(15deg);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: rotate(15deg) scale(1);
+      }
+
+      50% {
+        transform: rotate(15deg) scale(1.1);
+      }
+
+      100% {
+        transform: rotate(15deg) scale(1);
+      }
+    }
+
+    .installment {
+      font-size: 1.2rem;
+      color: #888;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 4rem 1rem;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+      }
+
+      .container {
+        padding: 2rem 1rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison {
+        overflow-x: auto;
+      }
+
+      .comparison table {
+        min-width: 600px;
+      }
+
+      .btn {
+        padding: 1.2rem 2.5rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <h1>Métodos RRR</h1>
+    <p>Uma Maneira 100% Garantida de Ter Seu Negócio Online Sem Dispor de Altos Investimentos!</p>
+  </header>
+
+  <div class="container">
+    <section class="features">
+      <div class="feature-card">
+        <h3>Estratégias de Marketing</h3>
+        <ul>
+          <li>Análise de Mercado</li>
+          <li>Segmentação de Audience</li>
+          <li>Desenvolvimento de Conteúdo</li>
+          <li>Otimização de SEO</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <h3>Técnicas de Vendas</h3>
+        <ul>
+          <li>Funis de Vendas</li>
+          <li>Persuasão e Influência</li>
+          <li>Fechamento de Vendas</li>
+          <li>Relacionamento com Clientes</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <h3>Gestão de Redes Sociais</h3>
+        <ul>
+          <li>Criação de Conteúdo Dinâmico</li>
+          <li>Análise de Resultados</li>
+          <li>Interação com Seguidores</li>
+          <li>Estratégias de Crescimento</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="price-section">
+      <div class="black-friday-badge">BLACK NOVEMBER</div>
+      <div class="price-tag">
+        <span class="original-price">R$ 98,90</span>
+        <span class="current-price">R$ 27,80</span>
+      </div>
+      <p class="price-detail">Oferta especial por tempo limitado!</p>
+      <p class="installment">ou 12x de R$ 2,32 sem juros</p>
+    </section>
+
+    <section class="comparison">
+      <h2>Comparativo com outros cursos</h2>
+      <table>
+        <tr>
+          <th>Recursos</th>
+          <th>Nosso Curso</th>
+          <th>Outros Cursos</th>
+        </tr>
+        <tr>
+          <td>Carga Horária</td>
+          <td>100+ horas</td>
+          <td>40-60 horas</td>
+        </tr>
+        <tr>
+          <td>Acesso ao Conteúdo</td>
+          <td>Vitalício</td>
+          <td>12 meses</td>
+        </tr>
+        <tr>
+          <td>Atualizações</td>
+          <td>Gratuitas e ilimitadas</td>
+          <td>Pagas</td>
+        </tr>
+        <tr>
+          <td>Suporte</td>
+          <td>Individual e em grupo</td>
+          <td>Apenas fórum</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="faq">
+      <h2>Perguntas Frequentes</h2>
+      <div class="faq-item">
+        <div class="faq-question">Preciso ter experiência prévia?<span></span></div>
+        <div class="faq-answer">Não, nosso curso foi desenvolvido para iniciantes e inclui todos os fundamentos
+          necessários.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Quanto tempo tenho acesso ao curso?<span></span></div>
+        <div class="faq-answer">O acesso é vitalício! Uma vez que você compra, tem acesso para sempre, incluindo
+          atualizações.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Tem Reembolso?<span></span></div>
+        <div class="faq-answer">Sim, nosso curso oferece reembolso.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Posso pagar em parcelas?<span></span></div>
+        <div class="faq-answer">Sim, oferecemos parcelamento em até 12x sem juros nos principais cartões de crédito.
+        </div>
+      </div>
+    </section>
+
+    <div class="cta">
+      <a href="https://pay.kirvano.com/27a59b9e-a47e-4ce3-9d27-6fb8a1e3073c" class="btn" target="_blank">QUERO
+        APROVEITAR ESSA OFERTA</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const isHidden = answer.style.display === 'none' || answer.style.display === '';
+
+        // Remove active class from all questions
+        document.querySelectorAll('.faq-question').forEach(q => {
+          q.classList.remove('active');
+        });
+
+        // Fecha todas as respostas
+        document.querySelectorAll('.faq-answer').forEach(a => {
+          a.style.display = 'none';
+        });
+
+        // Abre a resposta clicada
+        if (isHidden) {
+          answer.style.display = 'block';
+          question.classList.add('active');
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
