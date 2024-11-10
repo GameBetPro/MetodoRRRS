@@ -324,6 +324,119 @@
       margin-top: 1rem;
     }
 
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+      justify-items: center;
+    }
+
+    .pricing-card {
+      background: linear-gradient(145deg, #1e1e1e, #242424);
+      padding: 2.5rem;
+      border-radius: 15px;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0, 191, 143, 0.1);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 191, 143, 0.2);
+    }
+
+    .pricing-card .price {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin: 1.5rem 0;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+      animation: priceGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes priceGlow {
+
+      0%,
+      100% {
+        text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+      }
+
+      50% {
+        text-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+      }
+    }
+
+    .pricing-card .btn-outline {
+      margin-top: auto;
+      display: inline-block;
+      padding: 1rem 2rem;
+      border: 2px solid var(--primary);
+      border-radius: 50px;
+      color: var(--primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .pricing-card .btn-outline:hover {
+      color: white;
+      background: var(--gradient);
+      border-color: transparent;
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 191, 143, 0.3);
+    }
+
+    .pricing-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 15px;
+      padding: 2px;
+      background: var(--gradient);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .pricing-card:hover::before {
+      opacity: 1;
+    }
+
     @media (max-width: 768px) {
       .header {
         padding: 4rem 1rem;
@@ -404,10 +517,10 @@
       <div class="black-friday-badge">BLACK NOVEMBER</div>
       <div class="price-tag">
         <span class="original-price">R$ 98,90</span>
-        <span class="current-price">R$ 27,80</span>
+        <span class="current-price">R$ 29,90</span>
       </div>
       <p class="price-detail">Oferta especial por tempo limitado!</p>
-      <p class="installment">ou 12x de R$ 2,32 sem juros</p>
+      <p class="installment">ou 12x de R$ 2,49 sem juros</p>
     </section>
 
     <section class="comparison">
@@ -441,6 +554,31 @@
       </table>
     </section>
 
+    <section id="pricing-cards" class="pricing-cards">
+      <div class="pricing-card">
+        <h3>Curso em eBook</h3>
+        <div class="price">R$29,90</div>
+        <p class="description">Acesse todo o conteúdo em formato digital e estude no seu ritmo.</p>
+        <a href="https://pay.kirvano.com/27a59b9e-a47e-4ce3-9d27-6fb8a1e3073c" class="btn-outline">Começar Agora</a>
+      </div>
+
+      <div class="pricing-card">
+        <h3>Curso em Vídeo</h3>
+        <div class="price">R$48,90<span style="font-size: 1rem">/mês</span></div>
+        <p class="description">Todo o conteúdo em aulas práticas e didáticas para facilitar seu aprendizado.
+        </p>
+        <a href="https://pay.kirvano.com/03180f7b-ab2c-431d-a790-c4d426a5e819" class="btn-outline" target="_blank">Começar Agora</a>
+      </div>
+
+      <div class="pricing-card">
+        <h3>RRRS Premium</h3>
+        <div class="price">R$129,90<span style="font-size: 1rem">/ano</span></div>
+        <p class="description">Acesso a cursos completo em vídeo, à comunidade exclusiva e a materiais novos atualizados
+          todos os meses.</p>
+        <a href="https://pay.kirvano.com/03180f7b-ab2c-431d-a790-c4d426a5e819" class="btn-outline" target="_blank">Começar Agora</a>
+      </div>
+    </section>
+
     <section class="faq">
       <h2>Perguntas Frequentes</h2>
       <div class="faq-item">
@@ -454,8 +592,9 @@
           atualizações.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-question">Tem Reembolso?<span></span></div>
-        <div class="faq-answer">Sim, nosso curso oferece reembolso.</div>
+        <div class="faq-question">Tem certificado?<span></span></div>
+        <div class="faq-answer">Sim, ao concluir o curso você receberá um certificado digital reconhecido pelo mercado.
+        </div>
       </div>
       <div class="faq-item">
         <div class="faq-question">Posso pagar em parcelas?<span></span></div>
@@ -465,9 +604,9 @@
     </section>
 
     <div class="cta">
-      <a href="https://pay.kirvano.com/27a59b9e-a47e-4ce3-9d27-6fb8a1e3073c" class="btn" target="_blank">QUERO
-        APROVEITAR ESSA OFERTA</a>
+      <a href="https://pay.kirvano.com/03180f7b-ab2c-431d-a790-c4d426a5e819" class="btn" target="_blank">QUERO APROVEITAR ESSA OFERTA</a>
     </div>
+
   </div>
 
   <script>
@@ -476,17 +615,14 @@
         const answer = question.nextElementSibling;
         const isHidden = answer.style.display === 'none' || answer.style.display === '';
 
-        // Remove active class from all questions
         document.querySelectorAll('.faq-question').forEach(q => {
           q.classList.remove('active');
         });
 
-        // Fecha todas as respostas
         document.querySelectorAll('.faq-answer').forEach(a => {
           a.style.display = 'none';
         });
 
-        // Abre a resposta clicada
         if (isHidden) {
           answer.style.display = 'block';
           question.classList.add('active');
